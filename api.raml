@@ -1,0 +1,158 @@
+#%RAML 1.0
+title: Path Transportation API
+description: Documentation for Driver's APP API
+version: 1.0
+baseUri: http://13.58.25.16:4040/api
+/users:
+  get:
+    description: get list of users
+    responses:
+      200:
+        body:
+          application/json:
+            example:  {"message":"success"}
+  post:
+    description: create new user
+    headers:
+      Content-Type:
+        displayName: Content-Type
+        example: application/json
+    body:
+      application/json:
+        properties:
+          username :
+            displayName: username
+            type: string
+            description: Username
+            example: praneeth
+            required: true
+          mobileNumber :
+            displayName: mobileNumber
+            type: number
+            description: mobileNumber
+            example: 9176484536
+            required: true
+          password :
+            displayName: password
+            type: string
+            description: password
+            example: praneeth
+            required: true
+          email :
+            displayName: email
+            type: string
+            description: email
+            example: devunurisaipraneeth@gmail.com
+            required: true
+          dob :
+            displayName: dob
+            type: date-only
+            description: dob
+            example: 1997-03-07
+            required: true
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "message" : "Sent Success"
+              }
+  /me:
+    get:
+      description: Get User Details
+      headers:
+        x-auth:
+          displayName: x-auth
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ5ZTg1NTI3MjkxYjM5MGYxNGI1YTQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMxNTcwMjgyfQ.r3cQ9ILObWjUqIpBINzdhW_zgEW0NmnEoE35ymahad4
+          required: true
+    put:
+      description: Update user
+      headers:
+        x-auth:
+          displayName: x-auth
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ5ZTg1NTI3MjkxYjM5MGYxNGI1YTQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMxNTcwMjgyfQ.r3cQ9ILObWjUqIpBINzdhW_zgEW0NmnEoE35ymahad4
+          required: true
+        Content-Type:
+          displayName: Content-Type
+          type: string
+          example: application/json
+          required: true
+      queryParameters:
+        username: string
+        mobileNumber:
+          displayName: mobileNumber
+          type: number
+          description: Mobile Number
+          example: 1234567892
+          required: true
+        password:
+          displayName: password
+          type: string
+          description: Password
+          example: testing
+          required: true
+    delete:
+      description: Delete User
+      headers:
+        x-auth:
+          displayName: x-auth
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ5ZTg1NTI3MjkxYjM5MGYxNGI1YTQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMxNTcwMjgyfQ.r3cQ9ILObWjUqIpBINzdhW_zgEW0NmnEoE35ymahad4
+          required: true
+        Content-Type:
+          displayName: Content-Type
+          type: string
+          example: application/json
+          required: true
+    /token:
+      delete:
+        description: Logout (delete x-auth token)
+        headers:
+          x-auth:
+            displayName: x-auth
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjQ5ZTg1NTI3MjkxYjM5MGYxNGI1YTQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMxNTcwMjgyfQ.r3cQ9ILObWjUqIpBINzdhW_zgEW0NmnEoE35ymahad4
+            required: true
+          Content-Type:
+            displayName: Content-Type
+            type: string
+            example: application/json
+            required: true
+
+
+
+  /{user_id}:
+    uriParameters:
+      user_id: string
+    get:
+      description: Get user by ID
+/auth/user/login:
+  post:
+    description: Login Authentication
+    headers:
+      Content-Type:
+        displayName: Content-Type
+        example: application/json
+    body:
+      application/json:
+        properties:
+          mobileNumber :
+            displayName: mobileNumber
+            type: number
+            description: mobileNumber
+            example: 9176484536
+            required: true
+          password :
+            displayName: password
+            type: string
+            description: password
+            example: praneeth
+            required: true
+    responses:
+      200:
+        body:
+          application/json:
+            example: {"message":"success"}
